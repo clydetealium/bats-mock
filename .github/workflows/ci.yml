@@ -2,14 +2,14 @@ name: Script CI
 on:
   pull_request:
     paths:
-      - 'script/**/*.sh'
-      - 'script/**/*.bats'
+      - '**/*.sh'
+      - '**/*.bats'
   push:
     branches:
       - main
     paths:
-      - 'script/**/*.sh'
-      - 'script/**/*.bats'
+      - '**/*.sh'
+      - '**/*.bats'
   workflow_dispatch:
 jobs:
   test:
@@ -25,4 +25,4 @@ jobs:
         uses: actions/checkout@v1
 
       - name: Test
-        run: bats -r script/test
+        run: bats -r .
