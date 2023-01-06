@@ -39,7 +39,8 @@ function output_contains() {
 }
 
 function output_matches() {
-  local result=$(matches_re "$output" "$1")
+  matches_re "$output" "$1"
+  local result=$?
   return $result
 }
 
