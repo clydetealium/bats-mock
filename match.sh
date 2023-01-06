@@ -33,6 +33,28 @@ function equals_num() {
   return $outcome
 }
 
+function output_contains() {
+  local result=$(contains "$output" "$1")
+  return $result
+}
+
+function output_matches() {
+  local result=$(matches_re "$output" "$1")
+  return $result
+}
+
+function status_equals() {
+  equals_num "$status" "$1"
+  local result=$?
+  return $result
+}
+
+function output_line_count() {
+  equals_num "${#lines[@]}" "$1"
+  local result=$?
+  return $result
+}
+
 function debug() {
   echo "status: $status"
   echo "output: $output"
@@ -49,7 +71,11 @@ function check_outcome() {
 }
 
 # export helpers
-export -f matches_re
 export -f contains
-export -f equals_num
 export -f debug
+export -f equals_num
+export -f matches_re
+export -f output_contains
+export -f output_line_count
+export -f output_matches
+export -f status_equals
